@@ -21,14 +21,18 @@
             data-size="large"
             data-logo_alignment="left">
         </div>
+        <div>
+            <p id="message-area">Initial Load</p>
+        </div>
         <script src="https://accounts.google.com/gsi/client" async defer></script>
         <script>
             function handleCredentialResponse(response) {
-            // decodeJwtResponse() is a custom function defined by you
-            // to decode the credential response.
-            const responsePayload = jwtDecode(response.credential);
-        
-            console.log("Test: " + responsePayload);
+                // decodeJwtResponse() is a custom function defined by you
+                // to decode the credential response.
+                const responsePayload = jwtDecode(response.credential);
+            
+                console.log("Test: " + responsePayload);
+                document.getElementById("message-area").textContent = "User Signed In"
             }
 
             function jwtDecode(t) {
