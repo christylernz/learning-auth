@@ -32,8 +32,8 @@
                 const responsePayload = jwtDecode(response.credential);
             
                 console.log("JWT: " + JSON.stringify(responsePayload));
-                console.log("Response" + + JSON.stringify(response));
-                document.getElementById("message-area").textContent = "User Signed In";
+                console.log("Response" + JSON.stringify(response));
+                document.getElementById("message-area").textContent = "User " + responsePayload.name + " Signed In";
             }
 
             function jwtDecode(token) {
