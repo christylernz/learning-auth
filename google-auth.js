@@ -37,19 +37,42 @@ function _load_libraries() {
         fail = reject;
     }); 
     
-    function _all_ready() {
+    // Method that will resolve() promise if all checks are completed
+    function _check_ready() {
         if (auth_ready) {
             pass();
         }
     }
 
+    // When Google Authentication is read then initialise
+    function _auth_ready() {
+        google = window.google;
+        google.accounts.id.initialize({
+            client_id: state.cid,
+            auto_select: true,
+            callback: _on_response
+        });
+        auth_ready = true;
+        _check_ready();
+    }
+
 
     //Load Google Identity services
     const authscript = document.createElement(script);
-
+    authscript.type = 'text/javascript';
+    authscript.src = 'https://accounts.google.com/gsi/client';
+    authscript.defer = true;
+    authscript.async = true;
+    authscript.onload = _auth_ready;
+    authscript.onerror = fail;
+    document.getElementsByTagName('head')[0].appendChild(authscript); 
 
     //return the promise so that that load method can be chained with .then() and .catch()
     return ready;
+}
+
+async function _on_response(r) {
+
 }
 
 function _jwtDecode(token) {
