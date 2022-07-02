@@ -5,27 +5,12 @@
     </head>
     <body>
 
-        Page for Learning Authentication v0.1
-        
-        <div id="g_id_onload"
-            data-client_id="702269871560-c4lmbm1t9cdlq4ce7otvjjltsrt3lg1c.apps.googleusercontent.com"
-            data-context="signin"
-            data-ux_mode="popup"
-            data-callback="handleCredentialResponse">
+        Page for Learning Authentication v0.2
+        <div id="signin" ></div>
+        <div id="signout">
+            <button id="signout_button">Sign Out</button>
+            <button id="revoke_button">Sign Out (Revoke)</button>
         </div>
-
-        <div class="g_id_signin"
-            data-type="standard"
-            data-shape="pill"
-            data-theme="outline"
-            data-text="continue_with"
-            data-size="large"
-            data-logo_alignment="left">
-        </div>
-        <div>
-            <p id="message-area">Initial Load</p>
-        </div>
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-        
+        <pre id="content" style="white-space: pre-wrap;"></pre>
     </body>
 </html>
