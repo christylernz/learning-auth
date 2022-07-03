@@ -71,8 +71,36 @@ function _load_libraries() {
     return ready;
 }
 
-async function _on_response(r) {
+async function _on_response(response) {
+    state.user = null;
+    let event_type = 'unknown';
+    if (response && response.credential) {
+        try {
+            let rawdata = _jwtDecode(response.credential);
+            state.user = (
+                (
+                    {
+                        email,
+                        family_name,
+                        given_name,
+                        picture,
+                        name
+                    }
+                ) => (
+                    {
+                        email,
+                        family_name,
+                        given_name,
+                        picture,
+                        name
+                    }
+                )
+            )(rawdata);
+            
+        } catch (err) {
 
+        }
+    }
 }
 
 function _jwtDecode(token) {
