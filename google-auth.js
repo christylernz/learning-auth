@@ -67,7 +67,7 @@ function _load_libraries() {
     authscript.onload = _auth_ready;
     authscript.onerror = fail;
     document.getElementsByTagName('head')[0].appendChild(authscript); 
-
+    console.log('DEBUG');
     //return the promise so that that load method can be chained with .then() and .catch()
     return ready;
 }
