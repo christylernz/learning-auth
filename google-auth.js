@@ -19,7 +19,7 @@ const obs = [];
 function load(client_id) {
     state.cid = client_id;
     state.prev = window.localStorage.getItem('google-auth-id') ? true : false;
-    
+    _load_libraries();
 }
 
 //private functions
