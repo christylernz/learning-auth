@@ -59,7 +59,7 @@ function _load_libraries() {
 
 
     //Load Google Identity services
-    const authscript = document.createElement(script);
+    const authscript = document.createElement('script');
     authscript.type = 'text/javascript';
     authscript.src = 'https://accounts.google.com/gsi/client';
     authscript.defer = true;
