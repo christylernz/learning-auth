@@ -24,6 +24,7 @@ function load(client_id) {
 
 //private functions
 
+
 function _load_libraries() {
     let auth_ready = false; //is the Google Identity Services Loaded
 
@@ -77,6 +78,7 @@ async function _on_response(response) {
     if (response && response.credential) {
         try {
             let rawdata = _jwtDecode(response.credential);
+            // use arrow function with object literal to filter raw data and get result.
             state.user = (
                 (
                     {
@@ -96,9 +98,11 @@ async function _on_response(response) {
                     }
                 )
             )(rawdata);
-            
+            window.localStorage.setItem('google-auth-id','loaded');
+            event_type = 'signin';
         } catch (err) {
-
+            console.log(err);
+            event_type = 'error';
         }
     }
 }
