@@ -1,4 +1,4 @@
-import googleAuth from "./google-auth";
+import googleAuth from "./google-auth.js";
 
 const client_id = '702269871560-c4lmbm1t9cdlq4ce7otvjjltsrt3lg1c.apps.googleusercontent.com';
 
