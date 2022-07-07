@@ -72,6 +72,27 @@ function _load_libraries() {
     return ready;
 }
 
+function showSignIn(parent_id, params = {})
+{
+    const ctr = document.getElementById(parent_id);
+    if (!ctr) {
+        throw(new Error(`No container for signin button: '${parent_id}' `));
+    }
+
+    const options = {
+        type:  'standard',
+        theme: 'outline',
+        size:  'medium',
+        shape: 'pill',
+        ...params,
+    };
+
+    google.accounts.id.renderButton(
+        ctr,
+        options
+    ); 
+}
+
 async function _on_response(response) {
     state.user = null;
     let event_type = 'unknown';
