@@ -46,10 +46,13 @@ function showSignIn(parent_id, params = {})
     ); 
 }
 
+
+// function for getting the authentication state
 function getAuthState() {
     return state.prev
 }
 
+// function for displaying sign out buttons
 function showSignOut()
 {
     document.getElementById('signin').style.display = 'none';
@@ -57,6 +60,7 @@ function showSignOut()
     document.getElementById('error').style.display = 'none';
 }
 
+// function for displaying error message
 function showError()
 {
     document.getElementById('signin').style.display = 'none';
@@ -66,7 +70,7 @@ function showError()
 
 //private functions
 
-
+// load all dependencies and attach to html page
 function _load_libraries() {
     let auth_ready = false; //is the Google Identity Services Loaded
 
@@ -83,19 +87,17 @@ function _load_libraries() {
     // Method that will resolve() promise if all checks are completed
     function _check_ready() {
         if (auth_ready) {
-            pass();
-            //TODO: implement - recognize to decide wether to show onetap or not
-
+            //if Google Identity services is ready - check the state of authentication (has the user signed in already)
             if (getAuthState()) {
                 showSignOut()
             } else {
                 showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
             }
-            
+            pass();
         }
     }
 
-    // When Google Authentication is read then initialise
+    // When Google Authentication is loaded then initialise
     function _auth_ready() {
         google = window.google;
         google.accounts.id.initialize({
@@ -122,7 +124,7 @@ function _load_libraries() {
 }
 
 
-
+//success authentication call back.
 async function _on_response(response) {
     state.user = null;
     let event_type = 'unknown';
