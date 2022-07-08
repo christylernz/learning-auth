@@ -2,7 +2,8 @@
 export default {
     load,
     showSignIn,
-    showSignOut
+    showSignOut,
+    getAuthState
 };
 
 let google;
@@ -45,6 +46,10 @@ function showSignIn(parent_id, params = {})
     ); 
 }
 
+function getAuthState() {
+    return state.prev
+}
+
 function showSignOut()
 {
     document.getElementById('signin').style.display = 'none';
@@ -80,7 +85,13 @@ function _load_libraries() {
         if (auth_ready) {
             pass();
             //TODO: implement - recognize to decide wether to show onetap or not
-            showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
+
+            if (getAuthState()) {
+                
+            } else {
+                showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
+            }
+            
         }
     }
 
