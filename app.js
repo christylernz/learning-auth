@@ -10,7 +10,7 @@ function main() {
     signout.style.display = 'none';
     const signout_btn = document.getElementById('signout_button');
     const revoke_btn = document.getElementById('revoke_button');
-    googleAuth.showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
+    
 }
 
 main();
