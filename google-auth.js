@@ -64,7 +64,7 @@ function _load_libraries() {
     function _check_ready() {
         if (auth_ready) {
             pass();
-            googleAuth.showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
+            showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
         }
     }
 
