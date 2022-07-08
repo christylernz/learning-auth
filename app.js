@@ -10,6 +10,8 @@ function main() {
     signout.style.display = 'none';
     const signout_btn = document.getElementById('signout_button');
     const revoke_btn = document.getElementById('revoke_button');
+    const errordiv = document.getElementById('error');
+    errordiv.style.display = 'none';
     
 }
 

@@ -1,7 +1,8 @@
 
 export default {
     load,
-    showSignIn
+    showSignIn,
+    showSignOut
 };
 
 let google;
@@ -44,6 +45,20 @@ function showSignIn(parent_id, params = {})
     ); 
 }
 
+function showSignOut()
+{
+    document.getElementById('signin').style.display = 'none';
+    document.getElementById('signout').style.display = 'block';
+    document.getElementById('error').style.display = 'none';
+}
+
+function showError()
+{
+    document.getElementById('signin').style.display = 'none';
+    document.getElementById('signout').style.display = 'none';
+    document.getElementById('error').style.display = 'block';
+}
+
 //private functions
 
 
@@ -64,6 +79,7 @@ function _load_libraries() {
     function _check_ready() {
         if (auth_ready) {
             pass();
+            //TODO: implement - recognize to decide wether to show onetap or not
             showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
         }
     }
@@ -90,7 +106,6 @@ function _load_libraries() {
     authscript.onload = _auth_ready;
     authscript.onerror = fail;
     document.getElementsByTagName('head')[0].appendChild(authscript); 
-    console.log('DEBUG');
     //return the promise so that that load method can be chained with .then() and .catch()
     return ready;
 }
@@ -124,10 +139,11 @@ async function _on_response(response) {
                 )
             )(rawdata);
             window.localStorage.setItem('google-auth-id','loaded');
-            event_type = 'signin';
+            console.log('success');
+            showSignOut();
         } catch (err) {
             console.log(err);
-            event_type = 'error';
+            showError();
         }
     }
 }
