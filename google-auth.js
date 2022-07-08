@@ -87,7 +87,7 @@ function _load_libraries() {
             //TODO: implement - recognize to decide wether to show onetap or not
 
             if (getAuthState()) {
-                
+                showSignOut()
             } else {
                 showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
             }
