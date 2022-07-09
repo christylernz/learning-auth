@@ -68,6 +68,8 @@ function showError()
     document.getElementById('error').style.display = 'block';
 }
 
+
+
 //private functions
 
 // load all dependencies and attach to html page
@@ -153,6 +155,7 @@ async function _on_response(response) {
             )(rawdata);
             window.localStorage.setItem('google-auth-id','loaded');
             console.log('success');
+            console.log(JSON.stringify(state.user));
             showSignOut();
         } catch (err) {
             console.log(err);
