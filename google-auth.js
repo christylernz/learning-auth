@@ -91,7 +91,19 @@ function _load_libraries() {
         if (auth_ready) {
             //if Google Identity services is ready - check the state of authentication (has the user signed in already)
             if (getAuthState()) {
-                showSignOut()
+                function _handle_prompt_events(evt) {
+                    if (evt.isNotDisplayed()) {
+                      if (evt.getNotDisplayedReason() === 'suppressed_by_user') {
+                        showSignOut();
+                      }
+                    }
+                    if (evt.isSkippedMoment()) {
+                        showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
+                    }
+                  }
+                
+                  google.accounts.id.prompt(_handle_prompt_events);
+                
             } else {
                 showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
             }
