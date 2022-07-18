@@ -94,7 +94,11 @@ function _load_libraries() {
                 function _handle_prompt_events(evt) {
                     if (evt.isNotDisplayed()) {
                       if (evt.getNotDisplayedReason() === 'suppressed_by_user') {
-                        showSignOut();
+                        //disable 
+                        state.user = null;
+                        window.localStorage.removeItem('google-auth-id');
+                        google.accounts.id.disableAutoSelect();
+                        showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
                       }
                     }
                     if (evt.isSkippedMoment()) {
