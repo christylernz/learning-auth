@@ -194,7 +194,9 @@ function _showError()
 function _clearAuth() {
     state.user = null;
     window.localStorage.removeItem('google-auth-id');
-    google.accounts.id.disableAutoSelect();
+    if (google.accounts.id) {
+        google.accounts.id.disableAutoSelect();
+    }
 }
 
 function _jwtDecode(token) {
