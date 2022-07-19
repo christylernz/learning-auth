@@ -33,15 +33,16 @@ function getAuthState() {
     return state.prev
 }
 
-
+//sign in to google authentication (TODO: check if this is correct)
 function signIn() {
     _showSignOut();
 }
 
+
+//sign out of google authentication
 function signOut() {
     _clearAuth();
-    _showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
-    
+    _showSignIn('signin', {type: 'icon', size: 'large', text: 'continue_with'});
 }
 
 //private functions
@@ -143,10 +144,10 @@ async function _on_response(response) {
             window.localStorage.setItem('google-auth-id','loaded');
             console.log('success');
             console.log(JSON.stringify(state.user));
-            showSignOut();
+            _showSignOut();
         } catch (err) {
             console.log(err);
-            showError();
+            _showError();
         }
     }
 }
