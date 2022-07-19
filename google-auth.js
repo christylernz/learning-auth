@@ -35,12 +35,13 @@ function getAuthState() {
 
 
 function signIn() {
-    _showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
+    _showSignOut();
 }
 
 function signOut() {
     _clearAuth();
-    _showSignOut();
+    _showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
+    
 }
 
 //private functions
