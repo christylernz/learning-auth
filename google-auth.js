@@ -41,6 +41,7 @@ function signIn() {
 
 //sign out of google authentication
 function signOut() {
+    console.log("Signing out");
     _clearAuth();
     _showSignIn('signin', {type: 'icon', size: 'large', text: 'continue_with'});
 }
@@ -69,8 +70,7 @@ function _load_libraries() {
                 function _handle_prompt_events(evt) {
                     if (evt.isNotDisplayed()) {
                       if (evt.getNotDisplayedReason() === 'suppressed_by_user') {
-                        _clearAuth();
-                        signIn();
+                        signOut();
                       }
                     }
                     if (evt.isSkippedMoment()) {
