@@ -171,7 +171,10 @@ function _showSignIn(parent_id, params = {})
     google.accounts.id.renderButton(
         ctr,
         options
-    ); 
+    );
+    document.getElementById('signin').style.display = 'block';
+    document.getElementById('signout').style.display = 'none';
+    document.getElementById('error').style.display = 'none';
 }
 
 // function for displaying sign out buttons
