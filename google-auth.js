@@ -70,7 +70,8 @@ function _load_libraries() {
                 function _handle_prompt_events(evt) {
                     if (evt.isNotDisplayed()) {
                       if (evt.getNotDisplayedReason() === 'suppressed_by_user') {
-                        signOut();
+                        _clearAuth();
+                        signIn();
                       }
                     }
                     if (evt.isSkippedMoment()) {
