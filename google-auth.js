@@ -195,7 +195,7 @@ function _showError()
 function _clearAuth() {
     state.user = null;
     window.localStorage.removeItem('google-auth-id');
-    if (google.accounts.id) {
+    if (google) {
         google.accounts.id.disableAutoSelect();
     }
 }
