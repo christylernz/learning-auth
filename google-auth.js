@@ -35,7 +35,7 @@ function getAuthState() {
 
 //sign in to google authentication (TODO: check if this is correct)
 function signIn() {
-    _showSignOut();
+    _showSignIn('signin', {type: 'icon', size: 'large', text: 'continue_with'});
 }
 
 
@@ -43,7 +43,7 @@ function signIn() {
 function signOut() {
     console.log("Signing out");
     _clearAuth();
-    _showSignIn('signin', {type: 'icon', size: 'large', text: 'continue_with'});
+    signIn();
 }
 
 //private functions
