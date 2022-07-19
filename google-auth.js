@@ -1,8 +1,8 @@
 
 export default {
     load,
-    showSignIn,
-    showSignOut,
+    signIn,
+    signOut,
     getAuthState
 };
 
@@ -25,26 +25,7 @@ function load(client_id) {
     _load_libraries();
 }
 
-function showSignIn(parent_id, params = {})
-{
-    const ctr = document.getElementById(parent_id);
-    if (!ctr) {
-        throw(new Error(`No container for signin button: '${parent_id}' `));
-    }
 
-    const options = {
-        type:  'standard',
-        theme: 'outline',
-        size:  'medium',
-        shape: 'pill',
-        ...params,
-    };
-
-    google.accounts.id.renderButton(
-        ctr,
-        options
-    ); 
-}
 
 
 // function for getting the authentication state
@@ -52,23 +33,15 @@ function getAuthState() {
     return state.prev
 }
 
-// function for displaying sign out buttons
-function showSignOut()
-{
-    document.getElementById('signin').style.display = 'none';
-    document.getElementById('signout').style.display = 'block';
-    document.getElementById('error').style.display = 'none';
+
+function signIn() {
+    _showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
 }
 
-// function for displaying error message
-function showError()
-{
-    document.getElementById('signin').style.display = 'none';
-    document.getElementById('signout').style.display = 'none';
-    document.getElementById('error').style.display = 'block';
+function signOut() {
+    _clearAuth();
+    _showSignOut();
 }
-
-
 
 //private functions
 
@@ -95,18 +68,18 @@ function _load_libraries() {
                     if (evt.isNotDisplayed()) {
                       if (evt.getNotDisplayedReason() === 'suppressed_by_user') {
                         _clearAuth();
-                        showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
+                        signIn();
                       }
                     }
                     if (evt.isSkippedMoment()) {
-                        showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
+                        signIn();
                     }
                   }
                 
                   google.accounts.id.prompt(_handle_prompt_events);
                 
             } else {
-                showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
+                signIn();
             }
             pass();
         }
@@ -175,6 +148,43 @@ async function _on_response(response) {
             showError();
         }
     }
+}
+
+function _showSignIn(parent_id, params = {})
+{
+    const ctr = document.getElementById(parent_id);
+    if (!ctr) {
+        throw(new Error(`No container for signin button: '${parent_id}' `));
+    }
+
+    const options = {
+        type:  'standard',
+        theme: 'outline',
+        size:  'medium',
+        shape: 'pill',
+        ...params,
+    };
+
+    google.accounts.id.renderButton(
+        ctr,
+        options
+    ); 
+}
+
+// function for displaying sign out buttons
+function _showSignOut()
+{
+    document.getElementById('signin').style.display = 'none';
+    document.getElementById('signout').style.display = 'block';
+    document.getElementById('error').style.display = 'none';
+}
+
+// function for displaying error message
+function _showError()
+{
+    document.getElementById('signin').style.display = 'none';
+    document.getElementById('signout').style.display = 'none';
+    document.getElementById('error').style.display = 'block';
 }
 
 
