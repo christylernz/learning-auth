@@ -12,7 +12,7 @@ function main() {
     const revoke_btn = document.getElementById('revoke_button');
     const errordiv = document.getElementById('error');
     errordiv.style.display = 'none';
-    signout_btn.onclick = googleAuth.signOut();
+    signout_btn.onclick = googleAuth.signOut;
     
 }
 
