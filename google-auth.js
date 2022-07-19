@@ -94,10 +94,7 @@ function _load_libraries() {
                 function _handle_prompt_events(evt) {
                     if (evt.isNotDisplayed()) {
                       if (evt.getNotDisplayedReason() === 'suppressed_by_user') {
-                        //disable 
-                        state.user = null;
-                        window.localStorage.removeItem('google-auth-id');
-                        google.accounts.id.disableAutoSelect();
+                        _clearAuth();
                         showSignIn('signin', {type: 'standard', size: 'large', text: 'signup_with'});
                       }
                     }
@@ -180,6 +177,14 @@ async function _on_response(response) {
     }
 }
 
+
+//
+function _clearAuth() {
+    state.user = null;
+    window.localStorage.removeItem('google-auth-id');
+    google.accounts.id.disableAutoSelect();
+}
+
 function _jwtDecode(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -188,4 +193,4 @@ function _jwtDecode(token) {
     }).join(''));
 
     return JSON.parse(jsonPayload);
-};
+}
